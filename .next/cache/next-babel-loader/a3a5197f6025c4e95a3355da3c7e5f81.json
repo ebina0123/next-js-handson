@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from 'react';\nimport Link from 'next/';","map":{"version":3,"sources":["/Users/ebina/next-js-handson/pages/index.js"],"names":["React","Link"],"mappings":"AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,OAAOC,IAAP,MAAiB,OAAjB","sourcesContent":["import React from 'react';\nimport Link from 'next/'\n"]},"metadata":{},"sourceType":"module"}
