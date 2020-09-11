@@ -1,17 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
-import Layout from './Layout';
+import Router from 'next/router';
 
-const Home = () => {
-  return (
-    <>
-      <Layout>
-        children
-      </Layout>      
-    </>
-
-
-  );
+const Index = () => null;
+Index.getInitialProps = async ctx => {
+  const path = '/profile';
+  if (ctx.res) {
+    ctx.res.writeHead(302, { Location: path });
+    ctx.res.end();
+  } else {
+    Router.push(path);
+  }
+  return {};
 };
-
-export default Home;
+export default Index;
