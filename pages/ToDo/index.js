@@ -30,7 +30,7 @@ const useStyle = makeStyles((theme) => ({
 const App = () => {
   const [todos, setTodos] = React.useState([]);
   const [completedTodos, setCompletedTodos] = React.useState([]);
-  const [newTaskText, setnewTaskText] = React.useState();
+  const [newTaskText, setnewTaskText] = React.useState('');
 
   React.useEffect(() => {
     let savedTodos = localStorage.getItem('todos');
@@ -57,11 +57,9 @@ const App = () => {
   };
 
   const delTask = (e) => {
-    const newTodos = todos.filter((todo, todoindex) => {
+    const newtodolist = todos.filter((todo, todoindex) => {
       return e !== todoindex;
     });
-
-    const newtodolist = newTodos;
     const newcompletertodos = [...completedTodos, todos[e]]
     setCompletedTodos(newcompletertodos);
     setTodos(newtodolist);
@@ -71,11 +69,9 @@ const App = () => {
   };
 
   const reTask = (e) => {
-    const reTodos = completedTodos.filter((deltodo, deltodoindex) => {
+    const retodolist = completedTodos.filter((deltodo, deltodoindex) => {
       return e !== deltodoindex;
-    });
-
-    const retodolist = reTodos;
+    });;
     const newtodolist = [...todos, completedTodos[e]];
     setTodos(newtodolist);
     setCompletedTodos(retodolist);
