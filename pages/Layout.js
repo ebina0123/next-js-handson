@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 
   const Layout = ({ children }) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState('recents');
+    const [value, setValue] = React.useState();
 
     return (
         <BottomNavigation
@@ -32,12 +32,12 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
         >
             <BottomNavigationAction
                 Link href='/about' 
-                label="Recents"
+                label="ToDo List"
                 icon={<DoneAllIcon />}
             />
             <BottomNavigationAction 
                 Link href='/profile'
-                label="Favorites" 
+                label="Profile" 
                 icon={<PersonIcon />}
             />
         </BottomNavigation>

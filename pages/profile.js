@@ -7,8 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/blog';
@@ -16,6 +15,8 @@ import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import Box from '@material-ui/core/Box';
 import Layout from './Layout';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import PersonIcon from '@material-ui/icons/Person';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -105,12 +106,14 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 
   content1: {
     marginLeft: spacing(0),
+    fontFamily: 'fontFamily',
     [breakpoints.up('md')]: {
       marginLeft: spacing(+13),
     },
   },
   content2: {
     marginRight: spacing(0),
+    fontFamily: 'fontFamily',
     [breakpoints.up('md')]: {
       marginRight: spacing(+10),
     },
@@ -118,6 +121,14 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   cta: {
     marginTop: 24,
     textTransform: 'initial',
+  },
+
+  header: {
+    '& > *': {
+      margin: spacing(1),
+      fontSize: 20,
+    },
+    flexGrow: 0.1,
   },
 }));
 
@@ -129,20 +140,28 @@ export const BlogCardDemo = React.memo(function BlogCard() {
   } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
   const mediaStyles = useCoverCardMediaStyles();
+  const preventDefault = (event) => event.preventDefault();
+
   
   return (
     <div className={styles.root2}>
     <AppBar position="static">
     <Toolbar>
-      <IconButton edge="start" className={styles.menuButton} color="inherit" aria-label="Menu">
-        <MenuIcon />
-      </IconButton>
-      <Typography variant="h6" className={styles.title}>
+    <Button
+        className={styles.header}
+        startIcon={<DoneAllIcon style={{ fontSize: 40 }} />}
+        Link href='/about'
+        style={{ color: '#9e9e9e' }}
+      > 
+        ToDo List
+      </Button>
+      <Button
+        className={styles.header}
+        startIcon={<PersonIcon style={{ fontSize: 40 }} />}
+        Link href='/profile'
+      >
         Profile
-      </Typography>
-      <Typography variant="h6" className={styles.title}>
-        ToDoList
-      </Typography>
+      </Button>
     </Toolbar>
   </AppBar>
 
@@ -154,7 +173,7 @@ export const BlogCardDemo = React.memo(function BlogCard() {
            overline={'Birthday 2001 NOV 27'}
            heading={'Kudaka Moe'}
            body={
-            <Box fontSize={18}>
+            <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
             <div>沖縄工業高等専門学校</div>
             <div>情報通信システム工学科4年 </div>
             <div>・好きなもの：餃子、甘いもの</div>
@@ -188,7 +207,7 @@ export const BlogCardDemo = React.memo(function BlogCard() {
           overline={'Birthday 10 SEP 2020'}
           heading={'Sakima Tatuho'}
           body={
-             <Box fontSize={18}>
+             <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
               <div>沖縄工業高等専門学校</div>
               <div>情報通信システム工学科4年 </div>
               <div>・好きなもの：ラーメン、麻婆豆腐</div>
