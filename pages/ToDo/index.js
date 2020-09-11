@@ -34,16 +34,26 @@ const App = () => {
   React.useEffect(() => {
     let savedTodos = localStorage.getItem('todos');
     savedTodos = JSON.parse(savedTodos);
+
+    let savedCompTodos = localStorage.getItem('comptodos');
+    savedCompTodos = JSON.parse(savedCompTodos);
+
     if (savedTodos) {
-      setTodos(todos);
+      console.log("useEffect", savedTodos);
+      setTodos(savedTodos);
+    }
+
+    if (savedCompTodos) {
+      setCompletedTodos(savedCompTodos);
     }
   }, []);
 
   const addTask = () => {
-    setTodos([...todos, newTaskText]);
+    const newtodolist = [...todos, newTaskText];
+    setTodos(newtodolist);
     setnewTaskText('');
 
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(newtodolist));
   };
 
   const delTask = (e) => {
@@ -51,8 +61,15 @@ const App = () => {
       return e !== todoindex;
     });
 
-    setCompletedTodos([...completedTodos, todos[e]]);
-    setTodos(newTodos);
+    const newtodolist = newTodos;
+    const newcompletertodos = [...completedTodos, todos[e]]
+    setCompletedTodos(newcompletertodos);
+    setTodos(newtodolist);
+
+    console.log(newtodolist);
+
+    localStorage.setItem('comptodos', JSON.stringify(newcompletertodos));
+    localStorage.setItem('todos', JSON.stringify(newtodolist));
   };
 
   const reTask = (e) => {
@@ -60,8 +77,13 @@ const App = () => {
       return e !== deltodoindex;
     });
 
-    setTodos([...todos, completedTodos[e]]);
-    setCompletedTodos(reTodos);
+    const retodolist = reTodos;
+    const newtodolist = [...todos, completedTodos[e]];
+    setTodos(newtodolist);
+    setCompletedTodos(retodolist);
+
+    localStorage.setItem('comptodos', JSON.stringify(retodolist));
+    localStorage.setItem('todos', JSON.stringify(newtodolist));
   };
 
   const classes = useStyle();
@@ -173,7 +195,7 @@ const App = () => {
                   }
                 }}
               />
-              <Button color="#000" onClick={addTask}>
+              <Button color='inherit' onClick={addTask}>
                 追加
               </Button>
             </Typography>
@@ -195,12 +217,16 @@ const App = () => {
 
         <ui>
           {todos.map((todo, index) => (
-            <NotAchList todo={todo} index={index} key={todo.id} />
+            <div key={index}>
+              <NotAchList todo={todo} index={index} />
+            </div>
           ))}
 
           <finished>
             {completedTodos.map((todo, index) => (
-              <AchedList todo={todo} index={index} />
+              <div key={index}>
+                <AchedList todo={todo} index={index} key={todo.id} />
+              </div>
             ))}
           </finished>
         </ui>
