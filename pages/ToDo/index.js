@@ -40,7 +40,6 @@ const App = () => {
     savedCompTodos = JSON.parse(savedCompTodos);
 
     if (savedTodos) {
-      console.log("useEffect", savedTodos);
       setTodos(savedTodos);
     }
 
@@ -66,8 +65,6 @@ const App = () => {
     const newcompletertodos = [...completedTodos, todos[e]]
     setCompletedTodos(newcompletertodos);
     setTodos(newtodolist);
-
-    console.log(newtodolist);
 
     localStorage.setItem('comptodos', JSON.stringify(newcompletertodos));
     localStorage.setItem('todos', JSON.stringify(newtodolist));
