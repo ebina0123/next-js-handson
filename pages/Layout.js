@@ -31,13 +31,13 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
             className={classes.root}
         >
             <BottomNavigationAction
-                Link href='/about' 
+                Link href='/ToDo'
                 label="ToDo List"
                 icon={<DoneAllIcon />}
             />
-            <BottomNavigationAction 
+            <BottomNavigationAction
                 Link href='/profile'
-                label="Profile" 
+                label="Profile"
                 icon={<PersonIcon />}
             />
         </BottomNavigation>

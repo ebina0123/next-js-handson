@@ -49,7 +49,9 @@ const Example = () => {
           <Typography variant="h6" className={classes.title}>
             Change Text
           </Typography>
-          <Button color="inherit"><HomeIcon /></Button>
+          <Button color="inherit">
+            <HomeIcon />
+          </Button>
         </Toolbar>
       </AppBar>
       <Constainer maxWidth="sm">
