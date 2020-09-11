@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import Layout from './Layout';
 
 const Home = () => {
   return (
-    <div>
-      <div>Welcome to Next.js!</div>
-      <Link href="/about"> about</Link>
-    </div>
+    <>
+      <Layout>
+        children
+      </Layout>      
+    </>
+
+
   );
 };
 
