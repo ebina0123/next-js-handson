@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
 
 const App = () => {
   const [todos, setTodos] = React.useState([]);
-  const [completedTodos, setDeltodos] = React.useState([]);
+  const [completedTodos, setCompletedTodos] = React.useState([]);
   const [newTaskText, setnewTaskText] = React.useState();
 
   //  React.useEffect(() => {
@@ -51,7 +51,7 @@ const App = () => {
       return e !== todoindex;
     });
 
-    setDeltodos([...completedTodos, todos[e]]);
+    setCompletedTodos([...completedTodos, todos[e]]);
     setTodos(newTodos);
   };
 
@@ -61,13 +61,13 @@ const App = () => {
     });
 
     setTodos([...todos, completedTodos[e]]);
-    setDeltodos(reTodos);
+    setCompletedTodos(reTodos);
   };
 
   const classes = useStyle();
 
   const handleChange = (e) => {
-    setTmp(e.target.value);
+    setnewTaskText(e.target.value);
   };
 
   const [state, setState] = React.useState({
@@ -106,7 +106,7 @@ const App = () => {
     return <div />;
   };
 
-  const AchedList = (todo, index) => {
+  const AchedList = ({ todo, index }) => {
     if (checkedB) {
       return (
         <Typography variant="h4">
@@ -200,7 +200,7 @@ const App = () => {
 
           <finished>
             {completedTodos.map((todo, index) => (
-              <div key={todo.id}> {AchedList(todo, index)}</div>
+              <AchedList todo={todo} index={index} />
             ))}
           </finished>
         </ui>
