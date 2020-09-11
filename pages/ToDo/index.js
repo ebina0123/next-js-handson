@@ -28,8 +28,8 @@ const useStyle = makeStyles((theme) => ({
 
 const App = () => {
   const [todos, setTodos] = React.useState([]);
-  const [deledtodos, setDeltodos] = React.useState([]);
-  const [tmp, setTmp] = React.useState();
+  const [completedTodos, setDeltodos] = React.useState([]);
+  const [newTaskText, setnewTaskText] = React.useState();
 
   //  React.useEffect(() => {
   //    const savedTodos = localStorage.getItem("todos");
@@ -39,8 +39,8 @@ const App = () => {
   //  });
 
   const addTask = () => {
-    setTodos([...todos, tmp]);
-    setTmp('');
+    setTodos([...todos, newTaskText]);
+    setnewTaskText('');
     //    setTimeout(() => {
     //      localStorage.setItem('todos', todos);
     //    }, 100);
@@ -51,16 +51,16 @@ const App = () => {
       return e !== todoindex;
     });
 
-    setDeltodos([...deledtodos, todos[e]]);
+    setDeltodos([...completedTodos, todos[e]]);
     setTodos(newTodos);
   };
 
   const reTask = (e) => {
-    const reTodos = deledtodos.filter((deltodo, deltodoindex) => {
+    const reTodos = completedTodos.filter((deltodo, deltodoindex) => {
       return e !== deltodoindex;
     });
 
-    setTodos([...todos, deledtodos[e]]);
+    setTodos([...todos, completedTodos[e]]);
     setDeltodos(reTodos);
   };
 
@@ -84,7 +84,7 @@ const App = () => {
     setFlagB(event.target.checked);
   };
 
-  const notAchList = (todo, index) => {
+  const NotAchList = ({ todo, index }) => {
     if (state.checkedA) {
       return (
         <Typography variant="h4">
@@ -109,17 +109,19 @@ const App = () => {
   const AchedList = (todo, index) => {
     if (checkedB) {
       return (
-        <li key={index}>
-          <Checkbox
-            defaultChecked
-            onChange={() =>
-              setTimeout(() => {
-                reTask(index);
-              }, 1000)
-            }
-          />
-          {todo}
-        </li>
+        <Typography variant="h4">
+          <li key={index}>
+            <Checkbox
+              defaultChecked
+              onChange={() =>
+                setTimeout(() => {
+                  reTask(index);
+                }, 1000)
+              }
+            />
+            {todo}
+          </li>
+        </Typography>
       );
     }
     return <div />;
@@ -163,7 +165,7 @@ const App = () => {
                 label="新しい予定を入れてください"
                 style={{ width: 300 }}
                 size="medium"
-                value={tmp}
+                value={newTaskText}
                 onChange={handleChange}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -192,18 +194,23 @@ const App = () => {
         </Box>
 
         <ui>
-          {todos.map((todo, index) => {
-            return notAchList(todo, index);
-          })}
+          {todos.map((todo, index) => (
+            <NotAchList todo={todo} index={index} key={todo.id} />
+          ))}
 
-          {deledtodos.map((todo, index) => {
-            return AchedList(todo, index);
-          })}
+          <finished>
+            {completedTodos.map((todo, index) => (
+              <div key={todo.id}> {AchedList(todo, index)}</div>
+            ))}
+          </finished>
         </ui>
       </Container>
       <style jsx>{`
         ui {
           list-style: none;
+        }
+        finished {
+          color: #9E9E9E;
         }
         a {
           color: #000;
