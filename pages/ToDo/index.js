@@ -31,19 +31,19 @@ const App = () => {
   const [completedTodos, setCompletedTodos] = React.useState([]);
   const [newTaskText, setnewTaskText] = React.useState();
 
-  //  React.useEffect(() => {
-  //    const savedTodos = localStorage.getItem("todos");
-  //    if (savedTodos) {
-  //      setTodos(todos);
-  //    }
-  //  });
+  React.useEffect(() => {
+    let savedTodos = localStorage.getItem('todos');
+    savedTodos = JSON.parse(savedTodos);
+    if (savedTodos) {
+      setTodos(todos);
+    }
+  }, []);
 
   const addTask = () => {
     setTodos([...todos, newTaskText]);
     setnewTaskText('');
-    //    setTimeout(() => {
-    //      localStorage.setItem('todos', todos);
-    //    }, 100);
+
+    localStorage.setItem('todos', JSON.stringify(todos));
   };
 
   const delTask = (e) => {
