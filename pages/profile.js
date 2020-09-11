@@ -14,9 +14,9 @@ import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoConte
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import Box from '@material-ui/core/Box';
-import Layout from './Layout';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import PersonIcon from '@material-ui/icons/Person';
+import Layout from './Layout';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -134,98 +134,79 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 
 export const BlogCardDemo = React.memo(function BlogCard() {
   const styles = useStyles();
-  const {
-    button: buttonStyles,
-    ...contentStyles
-  } = useBlogTextInfoContentStyles();
+  const { button: buttonStyles, ...contentStyles } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
   const mediaStyles = useCoverCardMediaStyles();
   const preventDefault = (event) => event.preventDefault();
 
-  
   return (
     <div className={styles.root2}>
-    <AppBar position="static">
-    <Toolbar>
-    <Button
-        className={styles.header}
-        startIcon={<DoneAllIcon style={{ fontSize: 40 }} />}
-        Link href='/about'
-        style={{ color: '#9e9e9e' }}
-      > 
-        ToDo List
-      </Button>
-      <Button
-        className={styles.header}
-        startIcon={<PersonIcon style={{ fontSize: 40 }} />}
-        Link href='/profile'
-      >
-        Profile
-      </Button>
-    </Toolbar>
-  </AppBar>
+      <AppBar position="static">
+        <Toolbar>
+          <Button
+            className={styles.header}
+            startIcon={<DoneAllIcon style={{ fontSize: 40 }} />}
+            Link
+            href="/ToDo"
+            style={{ color: '#9e9e9e' }}
+          >
+            ToDo List
+          </Button>
+          <Button className={styles.header} startIcon={<PersonIcon style={{ fontSize: 40 }} />} Link href="/profile">
+            Profile
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-  <Container fixed>
-  <Card className={cx(styles.root1, shadowStyles.root)}>
-      <CardContent className={styles.content1}>
-         <TextInfoContent
-           class={contentStyles}
-           overline={'Birthday 2001 NOV 27'}
-           heading={'Kudaka Moe'}
-           body={
-            <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
-            <div>沖縄工業高等専門学校</div>
-            <div>情報通信システム工学科4年 </div>
-            <div>・好きなもの：餃子、甘いもの</div>
-            <div>・嫌いなもの：虫</div>
-            <div>・休日の過ごし方：友達とドライブ</div>
-            <div>よろしくお願いします！</div>
-            </Box>
-           }
-         />
-       </CardContent>
-       <CardMedia
-         className={styles.media1}
-         image={
-           'https://pbs.twimg.com/media/BqF5HtOCIAAEZaE.png'
-         }
-       />
+      <Container fixed>
+        <Card className={cx(styles.root1, shadowStyles.root)}>
+          <CardContent className={styles.content1}>
+            <TextInfoContent
+              class={contentStyles}
+              overline="Birthday 2001 NOV 27"
+              heading="Kudaka Moe"
+              body={
+                <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
+                  <div>沖縄工業高等専門学校</div>
+                  <div>情報通信システム工学科4年 </div>
+                  <div>・好きなもの：餃子、甘いもの</div>
+                  <div>・嫌いなもの：虫</div>
+                  <div>・休日の過ごし方：友達とドライブ</div>
+                  <div>よろしくお願いします！</div>
+                </Box>
+              }
+            />
+          </CardContent>
+          <CardMedia className={styles.media1} image="https://pbs.twimg.com/media/BqF5HtOCIAAEZaE.png" />
+        </Card>
 
-    </Card>
+        <Card className={cx(styles.root, shadowStyles.root)}>
+          <CardMedia
+            className={styles.media2}
+            image="https://irasutohonpo.com/wp-content/uploads/2018/09/%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%E3%81%AE%E7%84%A1%E6%96%99%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.png"
+          />
 
-    <Card className={cx(styles.root, shadowStyles.root)}>
-       <CardMedia
-        className={styles.media2}
-        image={
-          'https://irasutohonpo.com/wp-content/uploads/2018/09/%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%E3%81%AE%E7%84%A1%E6%96%99%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.png'
-        }
-      />
+          <CardContent className={styles.content2}>
+            <TextInfoContent
+              class={contentStyles}
+              overline="Birthday 10 SEP 2020"
+              heading="Sakima Tatuho"
+              body={
+                <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
+                  <div>沖縄工業高等専門学校</div>
+                  <div>情報通信システム工学科4年 </div>
+                  <div>・好きなもの：ラーメン、麻婆豆腐</div>
+                  <div>・嫌いなもの：レバー</div>
+                  <div>・休日の過ごし方：ゲーム</div>
+                  <div>よろしくお願いします！</div>
+                </Box>
+              }
+            />
+          </CardContent>
+        </Card>
+      </Container>
 
-      <CardContent className={styles.content2}>
-        <TextInfoContent
-          class={contentStyles}
-          overline={'Birthday 10 SEP 2020'}
-          heading={'Sakima Tatuho'}
-          body={
-             <Box fontSize={17} fontWeight={550} style={{ color: '#757575' }} m={1}>
-              <div>沖縄工業高等専門学校</div>
-              <div>情報通信システム工学科4年 </div>
-              <div>・好きなもの：ラーメン、麻婆豆腐</div>
-              <div>・嫌いなもの：レバー</div>
-              <div>・休日の過ごし方：ゲーム</div>
-              <div>よろしくお願いします！</div>
-            </Box>
-          }
-        />
-      </CardContent>
-    </Card>
-
-
-    </Container>
-
-      <Layout>
-        children
-      </Layout>      
+      <Layout>children</Layout>
     </div>
   );
 });

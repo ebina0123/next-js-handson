@@ -7,6 +7,7 @@ import { makeStyles, Toolbar, Button, Box, Checkbox, FormControlLabel, Divider, 
 import PersonIcon from '@material-ui/icons/Person';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import Typography from '@material-ui/core/Typography';
+import Layout from '../Layout';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -231,6 +232,7 @@ const App = () => {
           </finished>
         </ui>
       </Container>
+      <Layout />
       <style jsx>{`
         ui {
           list-style: none;
